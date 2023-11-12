@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MatrixController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['prefix' => 'layout'], function(){
+    Route::post('/create', [MatrixController::class, 'createLayout']);
+    Route::get('/getall', [MatrixController::class, 'getAllListLayout']);
+    Route::post('/get-value', [MatrixController::class, 'getLayoutValue']);
+});
+
+

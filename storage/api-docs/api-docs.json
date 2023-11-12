@@ -1,0 +1,229 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Matrix API For Map Elektronik Ticaret ve Veri Hizmetleri A.Ş.",
+        "description": "API documentation for the Matrix application.",
+        "contact": {
+            "email": "recepkapucuoglu@gmail.com"
+        },
+        "license": {
+            "name": "Recep Kapucuoğlu",
+            "url": "https://github.com/recepKapucuoglu"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/layout/create": {
+            "post": {
+                "tags": [
+                    "Matrix"
+                ],
+                "summary": "Create layout",
+                "operationId": "9a6b85524f24accbcb3deee666b29e7b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "input": {
+                                        "properties": {
+                                            "xParameter": {
+                                                "description": "The value for xParameter",
+                                                "type": "integer",
+                                                "minimum": 1
+                                            },
+                                            "yParameter": {
+                                                "description": "The value for yParameter",
+                                                "type": "integer",
+                                                "minimum": 1
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "xParameter": 3,
+                                    "yParameter": 4
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Layout created successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/layout/getall": {
+            "get": {
+                "tags": [
+                    "Matrix"
+                ],
+                "summary": "Get all layout list",
+                "operationId": "bfaee4fc9df10d5aef5eebd8478235f8",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "OK"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string"
+                                                    },
+                                                    "layoutTable": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Layouts not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Not Found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/layout/get-value": {
+            "post": {
+                "tags": [
+                    "Matrix"
+                ],
+                "summary": "Get layout coordinate value",
+                "operationId": "ac643dfd2f995108efbaa21605b270d4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "x": {
+                                        "description": "The value for x",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": 1
+                                    },
+                                    "y": {
+                                        "description": "The value for y",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": 2
+                                    },
+                                    "layoutId": {
+                                        "description": "The layout ID",
+                                        "type": "integer",
+                                        "format": "int32",
+                                        "example": 3
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "OK"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Layout value not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "error"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Not Found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
